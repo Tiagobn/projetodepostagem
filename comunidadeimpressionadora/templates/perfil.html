@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 align="center">Meu Perfil</h1>
+<div class="container">
+    <div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-4 mt-3">
+           <div class="first">
+            <h6 class="heading">{{current_user.email}}</h6>
+             <div class="time d-flex flex-row align-items-center justify-content-between mt-3">
+
+               <div class="d-flex align-items-center">
+                   <i class="fa fa-clock-o clock"></i>
+                   <span class="hour ml-1">3 hrs</span>
+               </div>
+
+               <div>
+                   {% if 'Não Informado' in current_user.cursos %}
+                        <span class="font-weight-bold">Cursos: </span><span class="number1">0</span><br>
+                   {% else %}
+                        <span class="font-weight-bold">Cursos: </span><span class="font-weight-bold">{{ current_user.cursos.count(';') + 1 }}</span><br>
+                   {% endif %}
+                   <span class="font-weight-bold">Posts: {{current_user.contar_posts()}}</span>
+               </div>
+
+            </div>
+
+
+
+</div>
+<div class="second d-flex flex-row mt-2">
+                    <div class="image mr-3 pe-2">
+                     <img src="{{ url_for('static', filename='fotos_perfil/' + current_user.foto_perfil) }} " class="rounded-circle" style="width: 110px; height: 110px />
+                    </div>
+
+                    <div class="">
+
+                        <div class="d-flex flex-row mb-1">
+
+                            <span>@{{current_user.username}}</span>
+
+                            <div class="ratings ml-2">
+
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+
+                            </div>
+
+                        </div>
+                        </div>
+                        <div style="align-content: center;">
+                            <br>
+                            <a href="/perfil/editar">
+                                <button class="btn btn-success btn-block"><i class="fa fa-clock-o"></i> Editar Perfil</button>
+                                <button class="btn btn-outline-dark btn-sm"><i class="fa fa-comment-o"></i></button>
+                            </a>
+
+
+
+                    </div>
+
+
+
+
+</div>
+
+
+<hr class="line-color">
+
+<h6>48 comments</h6>
+<div class="third mt-4">
+
+
+
+</div>
+</div>
+</div>
+       </div>
+
+</div>
+<br>
+
+<div class="row justify-content-center">
+    <div class="col col-4" style="text-align: center">
+        <h1> Cursos </h1>
+        {% for curso in current_user.cursos.split(';') %}
+    <button type="button" class="btn btn-info mt-2 mx-2" style="font-family: Calibri" disabled>{{ curso }}</button>
+        {% endfor %}
+
+</div>
+
+{% block form_editar_perfil %}
+{% endblock %}
+
+{% endblock %}

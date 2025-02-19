@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<div class="container" style="font-size: 194%; color: #e1ff20;"      >
+    <h1 style="font-size: 215% "   > Entusiasta de dados </h1>
+    <p  style="margin-top: -30px;font-size: 85%; Color: #e5e5e5; "> Siga - tih.nascimento / entusiasta_de_dados </p>
+    <hr>
+    {% for post in posts %}
+    <div class="row border mt-4 p-3  meupost rounded-3">
+
+            <div class="row">
+            <div class="col">
+                <div class="image mr-3 pe-2">
+                    <img src="{{ url_for('static', filename='fotos_perfil/' + post.autor.foto_perfil)  }}" class="rounded-circle" style="height: 110px;width: 110px;">
+                    <strong style=" font-size: 55%; font-family:Calibri" >{{ post.autor.username }}</strong>
+                    <div class="col" style="text-align: center">
+                            {% for curso in post.autor.cursos.split(';') %}
+                        <button type="button" class="btn btn-info mt-2 mx-2" style="font-family: Calibri" disabled>{{ curso }}</button>
+                            {% endfor %}
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col col-9">
+                <a style="text-decoration: none" href='{{ url_for("exibir_post", post_id=post.id) }}'><h2>{{ post.titulo }}</h2></a>
+                <h5> {{post.corpo }}</h5>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

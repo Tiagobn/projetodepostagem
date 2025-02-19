@@ -1,0 +1,51 @@
+{% extends 'perfil.html'%}
+
+
+{% block form_editar_perfil %}
+
+
+<hr>
+<div class="col">
+  <form method="POST" action="" class="border border-primary p-3 mt-2 " enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <legend> <h2> Editar Perfil </h2></legend>
+    <fieldset>
+      <div class="form-group">
+            {{ form.username.label (class="form-control-label")}}
+            {{ form.username (class="form-control mt-2") }}
+      </div>
+        </fieldset>
+        <fieldset>
+      <div class="form-group">
+            {{ form.email.label (class="form-control-label")}}
+            {{ form.email (class="form-control mt-2") }}
+      </div><br>
+      <div class="form-group">
+          {{ form.foto_perfil.label }}<br>
+          {{ form.foto_perfil(class="form-control-file") }}
+          {% if form.foto_perfil.errors %}
+            {% for erro in form.foto_perfil.errors %}
+                <span class="text-danger">{{ erro }} </span><br>
+            {% endfor %}
+          {% endif %}
+      </div>
+      <hr>
+      <p><h2>Cursos</h2></p>
+            {% for campo in form %}
+            {% if 'curso_' in campo.name %}
+                <div class="form-group" style="font-family: Calibri;">
+                    {{ campo(class="form-check-input mt-2") }}
+                    {{ campo.label (class="form-control-label") }}
+
+                </div>
+            {% endif %}
+            {% endfor %}
+
+        </fieldset><br>
+        {{ form.botao_submit_editarperfil(class="btn btn-outline-info p-2")}}
+      </form>
+</div>
+
+
+
+{% endblock %}

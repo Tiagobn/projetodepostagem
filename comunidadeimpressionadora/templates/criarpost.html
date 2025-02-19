@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+
+
+<hr>
+<div class="col">
+  <form method="POST" action="" class="border border-primary p-3 mt-2 ">
+    {{ form.csrf_token }}
+    <legend> <h2> Criar Post </h2></legend>
+    <fieldset>
+      <div class="form-group">
+            {{ form.titulo.label (class="form-control-label")}}
+            {{ form.titulo (class="form-control mt-2") }}
+      </div>
+        </fieldset>
+        <fieldset>
+      <div class="form-group">
+            {{ form.corpo.label (class="form-control-label")}}
+            {{ form.corpo (class="form-control mt-2") }}
+      </div><br>
+
+
+        </fieldset><br>
+        {{ form.botao_submit(class="btn btn-outline-info p-2")}}
+      </form>
+</div>
+
+</div>
+
+{% endblock %}
